@@ -1,20 +1,26 @@
 import '../styles/App.scss';
-
-//import { Link, Route } from 'react-router-dom';
-
+import { Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import callToApi from './services/callToApi';
+import Start from './Start';
+import Game from './Game';
 const App = () => {
-  return (
-    // <div>
-    //   {/* <Route path='/contacto'></Route> */}
+  const [answerData, setAnswerData] = useState({});
 
-    //   <nav>
-    //     <ul>
-    //       <li>{/* <Link to='/'></Link> */}</li>
-    //       <li>{/* <Link to='/contacto'></Link> */}</li>
-    //     </ul>
-    //   </nav>
-    // </div>
-    <>Pantalla principal para el juego del trivial</>
+  useEffect(() => {
+    callToApi().then((response) => {
+      setAnswerData(response);
+    });
+  }, []);
+  console.log(answerData);
+
+  return (
+    <div className='body'>
+      <Routes>
+        <Route path='/' element={<Start />} />
+        <Route path='/game' element={<Game answerData={answerData} />} />
+      </Routes>
+    </div>
   );
 };
 

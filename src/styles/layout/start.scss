@@ -1,0 +1,16 @@
+.landing {
+  &--title {
+    margin-bottom: 150px;
+    color: white;
+    text-transform: uppercase;
+  }
+  &--form {
+    &__button {
+      padding: 5px;
+      border: 2px solid rgb(47, 248, 255);
+      background-color: rgb(28, 186, 248);
+      color: rgb(12, 12, 12);
+      border-radius: 20px;
+    }
+  }
+}

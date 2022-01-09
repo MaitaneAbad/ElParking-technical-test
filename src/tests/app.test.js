@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import App from '../src/components/App';
+import App from '../components/App';
 
 // test('renders "Hola mundo"', () => {
 //   // Arrange

@@ -57,7 +57,7 @@ const Game = (props) => {
         <section>
           <form>
             <label htmlFor='option'>Opciones:</label>
-            <label htmlFor='optionA'>a</label>
+            <label htmlFor='optionA'>{optionAnswerTotal[i][0]}</label>
             <input
               type='radio'
               id='optionA'
@@ -65,7 +65,7 @@ const Game = (props) => {
               value={props.optionA}
               onChange={handleOption}
             />
-            <label htmlFor='optionB'>b</label>
+            <label htmlFor='optionB'>{optionAnswerTotal[i][1]}</label>
             <input
               type='radio'
               id='optionB'
@@ -73,7 +73,7 @@ const Game = (props) => {
               value={props.optionB}
               onChange={handleOption}
             />
-            <label htmlFor='optionC'>c</label>
+            <label htmlFor='optionC'>{optionAnswerTotal[i][2]}</label>
             <input
               type='radio'
               id='optionC'
@@ -81,7 +81,7 @@ const Game = (props) => {
               value={props.optionC}
               onChange={handleOption}
             />
-            <label htmlFor='optionD'>d</label>
+            <label htmlFor='optionD'>{optionAnswerTotal[i][3]}</label>
             <input
               type='radio'
               id='optionD'

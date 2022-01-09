@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Start = () => {
   return (
     <section className='landing'>
-      <h1 className='landing--title'>Trivial</h1>
+      <h1 className='landing--title'>Numerobis</h1>
       <form className='landing--form'>
         <Link to='game'>
           <input

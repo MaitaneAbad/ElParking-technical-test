@@ -11,7 +11,6 @@ const get = (key, defaultValue) => {
 const set = (key, value) => {
   const localStorageData = JSON.stringify(value);
   localStorage.setItem(key, localStorageData);
-  console.log(localStorage);
 };
 
 const objectToExport = {

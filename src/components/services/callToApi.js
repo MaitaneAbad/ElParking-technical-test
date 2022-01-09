@@ -11,6 +11,12 @@ const callToApi = () => {
       });
       console.log(data);
       return data;
+    })
+    .catch((error) => {
+      console.error(error);
+      alert(
+        'Hubo un error en la página, vuelve a cargar la página y si no espera unos minutos.'
+      );
     });
 };
 export default callToApi;

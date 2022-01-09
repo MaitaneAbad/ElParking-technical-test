@@ -2,23 +2,29 @@ import '../styles/App.scss';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import callToApi from './services/callToApi';
+import ls from './services/localStorage';
 import Start from './Start';
 import Game from './Game';
 const App = () => {
-  const [answerData, setAnswerData] = useState({});
+  const [data, setData] = useState({});
+  console.log(ls);
+
+  const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
+
+  ls.set('localStorage', localStorage);
 
   useEffect(() => {
     callToApi().then((response) => {
-      setAnswerData(response);
+      setData(response);
     });
   }, []);
-  console.log(answerData);
-
+  console.log(data);
+  console.log(localStorage);
   return (
     <div className='body'>
       <Routes>
         <Route path='/' element={<Start />} />
-        <Route path='/game' element={<Game answerData={answerData} />} />
+        <Route path='/game' element={<Game data={data} />} />
       </Routes>
     </div>
   );

@@ -7,7 +7,9 @@ import Start from './Start';
 import Game from './Game';
 const App = () => {
   const [data, setData] = useState({});
-  let optionAnswerTotal = [];
+  const [counter, setCounter] = useState(0);
+  const [optionAnswerTotal, setOptionAnswerTotal] = useState([]);
+  const [a, setA] = useState('');
   // const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
 
   // ls.set('localStorage', localStorage);
@@ -17,18 +19,39 @@ const App = () => {
       setData(response);
     });
   }, []);
-
+  const loadNextQuestionAndAnswers = () => {
+    const a = data[counter].questions;
+    const b = optionAnswerTotal[counter];
+    setA(a);
+    console.log(a);
+    console.log(b);
+    setCounter(counter + 1);
+  };
   //  console.log(localStorage);
   return (
     <div className='body'>
       <Routes>
         <Route
           path='/'
-          element={<Start data={data} optionAnswerTotal={optionAnswerTotal} />}
+          element={
+            <Start
+              data={data}
+              optionAnswerTotal={optionAnswerTotal}
+              setOptionAnswerTotal={setOptionAnswerTotal}
+              loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
+            />
+          }
         />
         <Route
           path='/game'
-          element={<Game data={data} optionAnswerTotal={optionAnswerTotal} />}
+          element={
+            <Game
+              data={data}
+              optionAnswerTotal={optionAnswerTotal}
+              loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
+              a={a}
+            />
+          }
         />
       </Routes>
     </div>

@@ -3,7 +3,6 @@ import '../styles/layout/game.scss';
 import { useState } from 'react/cjs/react.development';
 const Game = (props) => {
   const [option, setOption] = useState('');
-  const [count, setCount] = useState(0);
   const [first, setFirst] = useState('');
   const [second, setSecond] = useState('hidden');
   const [third, setThird] = useState('hidden');
@@ -15,12 +14,16 @@ const Game = (props) => {
   const [ninth, setNinth] = useState('hidden');
   const [tenth, setTenth] = useState('hidden');
   const [resumen, setResumen] = useState('hidden');
-  console.log(props.optionAnswerTotal);
 
   // const handleOption = (ev) => {
   //   setOption(ev.target.id);
   // };
+  // const loadNextQuestionAndAnswers = () => {
+  //   setCounter(counter + 1);
+  //   const a = props.data[counter].questions;
 
+  //   console.log(a);
+  // };
   const handleNextQuestion = (ev) => {
     console.log(ev);
     ev.preventDefault();
@@ -29,42 +32,52 @@ const Game = (props) => {
       case 'first':
         setFirst('hidden');
         setSecond('');
+        props.loadNextQuestionAndAnswers();
         break;
       case 'second':
         setSecond('hidden');
         setThird('');
+        props.loadNextQuestionAndAnswers();
         break;
       case 'third':
         setThird('hidden');
         setFourth('');
+        props.loadNextQuestionAndAnswers();
         break;
       case 'fourth':
         setFourth('hidden');
         setFifth('');
+        //loadNextQuestionAndAnswers();
         break;
       case 'fifth':
         setFifth('hidden');
         setSixth('');
+        //loadNextQuestionAndAnswers();
         break;
       case 'sixth':
         setSixth('hidden');
         setSeventh('');
+        //  loadNextQuestionAndAnswers();
         break;
       case 'seventh':
         setSeventh('hidden');
         setEighth('');
+        //  loadNextQuestionAndAnswers();
         break;
       case 'eighth':
         setEighth('hidden');
         setNinth('');
+        //  loadNextQuestionAndAnswers();
         break;
       case 'ninth':
         setNinth('hidden');
         setTenth('');
+        //  loadNextQuestionAndAnswers();
         break;
       case 'tenth':
         setTenth('hidden');
         setResumen('');
+        //  loadNextQuestionAndAnswers();
         break;
       default:
         break;
@@ -77,12 +90,46 @@ const Game = (props) => {
       </li>
     );
   });
+  // const answers = props.optionAnswerTotal.map((answers, i) => {
+  //   console.log(i);
+  //   console.log(answers);
+  //   return (
+  //     <div>
+  //       <label htmlFor='firstAnswer'>{props.optionAnswerTotal[i][0]}</label>
+  //       {/* Este radio solo debe aparecer activo cuando paymentType sea creditCard */}
+  //       <input
+  //         type='radio'
+  //         name='FirstAnswer'
+  //         id='firstAnswer'
+  //         value='firstAnswer'
+  //         //  checked={paymentType === 'creditCard'}
+  //         //  onChange={handlePaymentType}
+  //       />
+  //     </div>
+  //   );
+  // });
   return (
     <>
       <ul className='list'>
         <li className={first}>
-          {props.data[0].questions}
-          <form></form>
+          {props.a}
+          <form>
+            {' '}
+            <div>
+              <label htmlFor='firstAnswer'>
+                {/* {props.optionAnswerTotal[0][0]} */}
+              </label>
+              {/* Este radio solo debe aparecer activo cuando paymentType sea creditCard */}
+              <input
+                type='radio'
+                name='FirstAnswer'
+                id='firstAnswer'
+                value='firstAnswer'
+                //  checked={paymentType === 'creditCard'}
+                //  onChange={handlePaymentType}
+              />
+            </div>
+          </form>
           <button onClick={handleNextQuestion} id='first'>
             Siguiente
           </button>

@@ -1,5 +1,6 @@
 import '../styles/layout/start.scss';
 import { Link } from 'react-router-dom';
+
 const Start = (props) => {
   console.log(props.data.length);
 
@@ -16,6 +17,7 @@ const Start = (props) => {
       props.optionAnswerTotal.push(subArrayAux);
     }
     console.log(props.optionAnswerTotal);
+    props.loadNextQuestionAndAnswers();
   };
 
   return (

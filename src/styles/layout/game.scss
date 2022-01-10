@@ -1,13 +1,17 @@
 .list {
-  //height: 100vh;
-  border: red solid 1px;
   font-size: 10px;
   letter-spacing: 2px;
+  line-height: 15px;
   text-align: center;
   margin: 10px auto;
   &__li {
-    margin: 10px auto;
-    border: 1px blue dotted;
+    margin: 10px auto 30px;
+    border: 0.2rem solid #fff;
+    box-shadow: inset 0 0 0.1rem #fff, 0 0 0.1rem #fff, 0 0 1rem #bc13fe,
+      0 0 0.1rem #bc13fe, 0 0 0.5rem #bc13fe, 0 0 0.3rem #bc13fe;
+    &--question {
+      margin: 10px auto;
+    }
     &--form {
       margin: 10px auto;
       border: greenyellow 1px solid;

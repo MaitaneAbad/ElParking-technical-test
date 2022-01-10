@@ -133,7 +133,7 @@ const Game = (props) => {
           data={props.data}
           generateAnswers={generateAnswers}
         ></Answers> */}
-          <h3>{item.names}</h3>
+          <h3 className='list__li--question'>{item.names}</h3>
           <form
             id={`formLi_${i}`}
             onSubmit={nextQuestion}

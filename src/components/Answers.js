@@ -1,11 +1,12 @@
 import { useState } from 'react';
+
 const Answers = (props) => {
   const [option, setOption] = useState('');
   console.log(props);
   const handleOption = (ev) => {
     setOption(ev.target.value);
   };
-
+  //{props.optionAnswerTotal[props.i][0]}
   return (
     <>
       <h3>{props.item.names}</h3>
@@ -17,31 +18,31 @@ const Answers = (props) => {
             type='radio'
             id='optionA'
             name='option'
-            value={props.optionA}
+            value={''}
             onChange={handleOption}
           />
-          <label htmlFor='optionB'>b</label>
+          <label htmlFor='optionB'>{}</label>
           <input
             type='radio'
             id='optionB'
             name='option'
-            value={props.optionB}
+            value={''}
             onChange={handleOption}
           />
-          <label htmlFor='optionC'>c</label>
+          <label htmlFor='optionC'>{}</label>
           <input
             type='radio'
             id='optionC'
             name='option'
-            value={props.optionC}
+            value={''}
             onChange={handleOption}
           />
-          <label htmlFor='optionD'>d</label>
+          <label htmlFor='optionD'>{}</label>
           <input
             type='radio'
             id='optionD'
             name='option'
-            value={props.optionD}
+            value={''}
             onChange={handleOption}
           />
         </form>

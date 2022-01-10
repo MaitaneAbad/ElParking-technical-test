@@ -1,16 +1,45 @@
 .landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   &--title {
     margin-bottom: 150px;
     color: white;
     text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 14px;
+    text-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+      0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, 0 0 1.3rem #bc13fe;
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
   }
   &--form {
     &__button {
-      padding: 5px;
-      border: 2px solid rgb(47, 248, 255);
-      background-color: rgb(28, 186, 248);
-      color: rgb(12, 12, 12);
+      padding: 10px;
+      border: 0.2rem solid #fff;
+      background-color: rgb(53, 49, 49);
+      color: #fff;
       border-radius: 20px;
+      font-size: 12px;
+      animation: alternate pulsate 1.5s infinite;
+
+      box-shadow: inset 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+        0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, 0 0 1.3rem #bc13fe;
     }
+  }
+}
+
+@keyframes pulsate {
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #bc13fe,
+      0 0 80px #bc13fe, 0 0 90px #bc13fe, 0 0 100px #bc13fe, 0 0 150px #bc13fe;
+  }
+
+  0% {
+    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 10px #bc13fe,
+      0 0 45px #bc13fe, 0 0 55px #bc13fe, 0 0 70px #bc13fe, 0 0 80px #bc13fe;
   }
 }

@@ -7,7 +7,7 @@ import Start from './Start';
 import Game from './Game';
 const App = () => {
   const [data, setData] = useState({});
-
+  let optionAnswerTotal = [];
   // const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
 
   // ls.set('localStorage', localStorage);
@@ -22,7 +22,10 @@ const App = () => {
     <div className='body'>
       <Routes>
         <Route path='/' element={<Start />} />
-        <Route path='/game' element={<Game data={data} />} />
+        <Route
+          path='/game'
+          element={<Game data={data} optionAnswerTotal={optionAnswerTotal} />}
+        />
       </Routes>
     </div>
   );

@@ -17,11 +17,15 @@ const App = () => {
       setData(response);
     });
   }, []);
+
   //  console.log(localStorage);
   return (
     <div className='body'>
       <Routes>
-        <Route path='/' element={<Start />} />
+        <Route
+          path='/'
+          element={<Start data={data} optionAnswerTotal={optionAnswerTotal} />}
+        />
         <Route
           path='/game'
           element={<Game data={data} optionAnswerTotal={optionAnswerTotal} />}

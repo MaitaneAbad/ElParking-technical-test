@@ -4,8 +4,9 @@ const callToApi = () => {
     .then((response) => {
       const data = response.results.map((data) => {
         return {
-          names: data.question,
+          questions: data.question,
           correctAnswer: data.correct_answer,
+          incorrectAnswers: data.incorrect_answers,
         };
       });
       return data;

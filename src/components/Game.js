@@ -2,197 +2,124 @@
 import '../styles/layout/game.scss';
 import { useState } from 'react/cjs/react.development';
 const Game = (props) => {
-  const [option, setOption] = useState('');
-  const [first, setFirst] = useState('');
-  const [second, setSecond] = useState('hidden');
-  const [third, setThird] = useState('hidden');
-  const [fourth, setFourth] = useState('hidden');
-  const [fifth, setFifth] = useState('hidden');
-  const [sixth, setSixth] = useState('hidden');
-  const [seventh, setSeventh] = useState('hidden');
-  const [eighth, setEighth] = useState('hidden');
-  const [ninth, setNinth] = useState('hidden');
-  const [tenth, setTenth] = useState('hidden');
+  const [optionFirst, setOptionFirst] = useState('');
+  const [askedAnswers, setAskedAnswers] = useState([]);
   const [resumen, setResumen] = useState('hidden');
+  const [checkedValid, setCheckedValid] = useState(false);
+  //const [askedQuestions, setAskedQuestions] = useState([]);
+  const [questionAnswerPack, setQuestionAnswerPack] = useState([]);
+  const [error, setError] = useState('');
+  const [answerValid, setAnswerValid] = useState('');
 
-  // const handleOption = (ev) => {
-  //   setOption(ev.target.id);
-  // };
-  // const loadNextQuestionAndAnswers = () => {
-  //   setCounter(counter + 1);
-  //   const a = props.data[counter].questions;
-
-  //   console.log(a);
-  // };
-  const handleNextQuestion = (ev) => {
-    console.log(ev);
-    ev.preventDefault();
-
-    switch (ev.target.id) {
-      case 'first':
-        setFirst('hidden');
-        setSecond('');
-        props.loadNextQuestionAndAnswers();
-        break;
-      case 'second':
-        setSecond('hidden');
-        setThird('');
-        props.loadNextQuestionAndAnswers();
-        break;
-      case 'third':
-        setThird('hidden');
-        setFourth('');
-        props.loadNextQuestionAndAnswers();
-        break;
-      case 'fourth':
-        setFourth('hidden');
-        setFifth('');
-        //loadNextQuestionAndAnswers();
-        break;
-      case 'fifth':
-        setFifth('hidden');
-        setSixth('');
-        //loadNextQuestionAndAnswers();
-        break;
-      case 'sixth':
-        setSixth('hidden');
-        setSeventh('');
-        //  loadNextQuestionAndAnswers();
-        break;
-      case 'seventh':
-        setSeventh('hidden');
-        setEighth('');
-        //  loadNextQuestionAndAnswers();
-        break;
-      case 'eighth':
-        setEighth('hidden');
-        setNinth('');
-        //  loadNextQuestionAndAnswers();
-        break;
-      case 'ninth':
-        setNinth('hidden');
-        setTenth('');
-        //  loadNextQuestionAndAnswers();
-        break;
-      case 'tenth':
-        setTenth('hidden');
-        setResumen('');
-        //  loadNextQuestionAndAnswers();
-        break;
-      default:
-        break;
+  const handleOptionInputs = (ev) => {
+    setError('');
+    setOptionFirst(ev.target.value);
+    setCheckedValid(ev.target.checked);
+    validAswers(ev.target.value);
+  };
+  //
+  const validAswers = (val) => {
+    if (val === props.data[props.counter - 1].correctAnswer) {
+      const correct = <i className='fas fa-check-circle'></i>;
+      console.log('respuesta correcta');
+      setAnswerValid(correct);
+      return true;
+    } else {
+      console.log('respuesta Incorrecta');
+      <i className='fas fa-times-circle'></i>;
+      return false;
     }
   };
-  const resumenQuestion = props.data.map((question, i) => {
-    return (
-      <li key={i}>
-        <p>{question.questions}</p>
-      </li>
-    );
-  });
-  // const answers = props.optionAnswerTotal.map((answers, i) => {
-  //   console.log(i);
-  //   console.log(answers);
+
+  const handleNextQuestion = (ev) => {
+    const arrayAux = [];
+    if (checkedValid !== true) {
+      setError('Tienes que seleccionar alguna respuesta');
+      console.log('error');
+    } else {
+      console.log(props.question);
+      arrayAux.push(props.question);
+      arrayAux.push(optionFirst);
+      arrayAux.push(validAswers(ev.target.value));
+      questionAnswerPack.push(arrayAux);
+      console.log(questionAnswerPack);
+      handleOptionInputs(ev);
+      props.loadNextQuestionAndAnswers();
+    }
+    // Cogeme la pregunta y la respuesta y muestramelá más abajo
+  };
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+  // const resumenQuestion = props.map((question, i) => {
+  //   console.log(question);
   //   return (
-  //     <div>
-  //       <label htmlFor='firstAnswer'>{props.optionAnswerTotal[i][0]}</label>
-  //       {/* Este radio solo debe aparecer activo cuando paymentType sea creditCard */}
-  //       <input
-  //         type='radio'
-  //         name='FirstAnswer'
-  //         id='firstAnswer'
-  //         value='firstAnswer'
-  //         //  checked={paymentType === 'creditCard'}
-  //         //  onChange={handlePaymentType}
-  //       />
-  //     </div>
+  //     <li key={i}>
+  //       <p>{question.questions}</p>
+  //     </li>
   //   );
   // });
+
   return (
     <>
       <ul className='list'>
-        <li className={first}>
-          {props.a}
-          <form>
+        <li key={props.counter}>
+          {props.question}
+          <form onSubmit={handleSubmit}>
             {' '}
-            <div>
-              <label htmlFor='firstAnswer'>
-                {/* {props.optionAnswerTotal[0][0]} */}
-              </label>
-              {/* Este radio solo debe aparecer activo cuando paymentType sea creditCard */}
-              <input
-                type='radio'
-                name='FirstAnswer'
-                id='firstAnswer'
-                value='firstAnswer'
-                //  checked={paymentType === 'creditCard'}
-                //  onChange={handlePaymentType}
-              />
-            </div>
+            <label className='label-radio' htmlFor='firstOption'>
+              {props.answer[0]}
+            </label>
+            <input
+              type='radio'
+              name='firstOption'
+              id={props.answer[0]}
+              value={props.answer[0]}
+              checked={optionFirst === props.answer[0]}
+              onChange={handleOptionInputs}
+            />{' '}
+            <label className='label-radio' htmlFor='secondOption'>
+              {props.answer[1]}
+            </label>
+            <input
+              type='radio'
+              name='secondOption'
+              id={props.answer[1]}
+              value={props.answer[1]}
+              checked={optionFirst === props.answer[1]}
+              onChange={handleOptionInputs}
+            />{' '}
+            <label className='label-radio' htmlFor='thirdthOption'>
+              {props.answer[2]}
+            </label>
+            <input
+              type='radio'
+              name='thirdthOption'
+              id={props.answer[2]}
+              value={props.answer[2]}
+              checked={optionFirst === props.answer[2]}
+              onChange={handleOptionInputs}
+            />{' '}
+            <label className='label-radio' htmlFor='fourthOption'>
+              {props.answer[3]}
+            </label>
+            <input
+              type='radio'
+              name='fourthOption'
+              id={props.answer[3]}
+              value={props.answer[3]}
+              checked={optionFirst === props.answer[3]}
+              onChange={handleOptionInputs}
+            />
           </form>
-          <button onClick={handleNextQuestion} id='first'>
-            Siguiente
-          </button>
-        </li>
-
-        <li className={second}>
-          {props.data[1].questions}
-          <button onClick={handleNextQuestion} id='second'>
-            Siguiente
-          </button>
-        </li>
-        <li className={third}>
-          {props.data[2].questions}
-          <button onClick={handleNextQuestion} id='third'>
-            Siguiente
-          </button>
-        </li>
-        <li className={fourth}>
-          {props.data[3].questions}
-          <button onClick={handleNextQuestion} id='fourth'>
-            Siguiente
-          </button>
-        </li>
-        <li className={fifth}>
-          {props.data[4].questions}
-          <button onClick={handleNextQuestion} id='fifth'>
-            Siguiente
-          </button>
-        </li>
-        <li className={sixth}>
-          {props.data[5].questions}
-          <button onClick={handleNextQuestion} id='sixth'>
-            Siguiente
-          </button>
-        </li>
-        <li className={seventh}>
-          {props.data[6].questions}
-          <button onClick={handleNextQuestion} id='seventh'>
-            Siguiente
-          </button>
-        </li>
-        <li className={eighth}>
-          {props.data[7].questions}
-          <button onClick={handleNextQuestion} id='eighth'>
-            Siguiente
-          </button>
-        </li>
-        <li className={ninth}>
-          {props.data[8].questions}
-          <button onClick={handleNextQuestion} id='ninth'>
-            Siguiente
-          </button>
-        </li>
-        <li className={tenth}>
-          {props.data[9].questions}
-          <button onClick={handleNextQuestion} id='tenth'>
-            Resumen
-          </button>
+          <button onClick={handleNextQuestion}>Siguiente</button>
         </li>
       </ul>
+      {error}
+      {optionFirst}
       <div className={resumen}>
         Resumen del Tri-vi-al
-        <ul>{resumenQuestion}</ul>
+        <ul></ul>
       </div>
     </>
   );

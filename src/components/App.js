@@ -9,25 +9,25 @@ const App = () => {
   const [data, setData] = useState({});
   const [counter, setCounter] = useState(0);
   const [optionAnswerTotal, setOptionAnswerTotal] = useState([]);
-  const [a, setA] = useState('');
+
+  const [question, setQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
   // const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
 
   // ls.set('localStorage', localStorage);
-
   useEffect(() => {
     callToApi().then((response) => {
       setData(response);
     });
   }, []);
   const loadNextQuestionAndAnswers = () => {
-    const a = data[counter].questions;
-    const b = optionAnswerTotal[counter];
-    setA(a);
-    console.log(a);
-    console.log(b);
+    const titleQuestion = data[counter].questions;
+    const firstAnswers = optionAnswerTotal[counter];
+    for (let i = 0; i < firstAnswers.length; i++) {}
+    setQuestion(titleQuestion);
+    setAnswer(firstAnswers);
     setCounter(counter + 1);
   };
-  //  console.log(localStorage);
   return (
     <div className='body'>
       <Routes>
@@ -49,7 +49,9 @@ const App = () => {
               data={data}
               optionAnswerTotal={optionAnswerTotal}
               loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
-              a={a}
+              question={question}
+              answer={answer}
+              counter={counter}
             />
           }
         />

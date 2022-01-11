@@ -1,12 +1,14 @@
 //import Answers from './Answers';
 import '../styles/layout/game.scss';
 import { useState } from 'react/cjs/react.development';
+import { Link, Route, Routes } from 'react-router-dom';
+
 const Game = (props) => {
   const [optionFirst, setOptionFirst] = useState('');
-  const [askedAnswers, setAskedAnswers] = useState([]);
   const [resumen, setResumen] = useState('hidden');
+  const [quiz, setQuiz] = useState('');
+  const [viewQuestions, setViewQuestions] = useState('');
   const [checkedValid, setCheckedValid] = useState(false);
-  //const [askedQuestions, setAskedQuestions] = useState([]);
   const [questionAnswerPack, setQuestionAnswerPack] = useState([]);
   const [error, setError] = useState('');
   const [answerValid, setAnswerValid] = useState('');
@@ -18,15 +20,11 @@ const Game = (props) => {
     validAswers(ev.target.value);
   };
   //
-  const validAswers = (val) => {
-    if (val === props.data[props.counter - 1].correctAnswer) {
-      const correct = <i className='fas fa-check-circle'></i>;
-      console.log('respuesta correcta');
-      setAnswerValid(correct);
+  const validAswers = () => {
+    console.log(props.data[props.counter - 1].correctAnswer);
+    if (optionFirst === props.data[props.counter - 1].correctAnswer) {
       return true;
     } else {
-      console.log('respuesta Incorrecta');
-      <i className='fas fa-times-circle'></i>;
       return false;
     }
   };
@@ -41,29 +39,61 @@ const Game = (props) => {
       arrayAux.push(props.question);
       arrayAux.push(optionFirst);
       arrayAux.push(validAswers(ev.target.value));
+      console.log(arrayAux);
       questionAnswerPack.push(arrayAux);
       console.log(questionAnswerPack);
       handleOptionInputs(ev);
       props.loadNextQuestionAndAnswers();
+    }
+
+    if (ev.target.id === '10') {
+      setResumen('');
+      setViewQuestions('hidden');
+      setQuiz('hidden');
     }
     // Cogeme la pregunta y la respuesta y muestramelá más abajo
   };
   const handleSubmit = (ev) => {
     ev.preventDefault();
   };
-  // const resumenQuestion = props.map((question, i) => {
-  //   console.log(question);
-  //   return (
-  //     <li key={i}>
-  //       <p>{question.questions}</p>
-  //     </li>
-  //   );
-  // });
+  console.log(props.data);
+  const resumenQuestion = questionAnswerPack.map((item, i) => {
+    return (
+      <>
+        <li key={i}>
+          <p>{item[0]}</p>
+          <p>
+            {item[2] === true ? (
+              <i className='fas fa-check-circle'></i>
+            ) : (
+              <i className='fas fa-times-circle'></i>
+            )}
+            {item[1]}
+          </p>
+        </li>
+      </>
+    );
+  });
+
+  function button() {
+    const changeButton = props.counter;
+    if (changeButton < props.data.length) {
+      return <button onClick={handleNextQuestion}>Siguiente</button>;
+    } else {
+      return (
+        <>
+          <div id={props.data.length} onClick={handleNextQuestion}>
+            Finalizar
+          </div>
+        </>
+      );
+    }
+  }
 
   return (
     <>
-      <ul className='list'>
-        <li key={props.counter}>
+      <ul className={quiz}>
+        <li key={props.counter} id={props.counter}>
           {props.question}
           <form onSubmit={handleSubmit}>
             {' '}
@@ -112,14 +142,13 @@ const Game = (props) => {
               onChange={handleOptionInputs}
             />
           </form>
-          <button onClick={handleNextQuestion}>Siguiente</button>
+          {button()}
         </li>
       </ul>
       {error}
-      {optionFirst}
+      <ul className={viewQuestions}>{resumenQuestion}</ul>
       <div className={resumen}>
-        Resumen del Tri-vi-al
-        <ul></ul>
+        Resumen del Tri-vi-al<div>{resumenQuestion}</div>
       </div>
     </>
   );

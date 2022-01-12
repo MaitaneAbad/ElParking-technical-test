@@ -1,5 +1,5 @@
 import '../styles/App.scss';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import callToApi from './services/callToApi';
 //import ls from './services/localStorage';
@@ -32,36 +32,38 @@ const App = () => {
   }, []);
 
   return (
-    <div className='body'>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <Start
-              data={data}
-              optionAnswerTotal={optionAnswerTotal}
-              setOptionAnswerTotal={setOptionAnswerTotal}
-              loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
-            />
-          }
-        />
-        <Route
-          path='/game'
-          element={
-            <Game
-              data={data}
-              optionAnswerTotal={optionAnswerTotal}
-              loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
-              question={question}
-              setQuestion={setQuestion}
-              answer={answer}
-              setAnswer={setAnswer}
-              counter={counter}
-            />
-          }
-        />
-      </Routes>
-    </div>
+    <BrowserRouter>
+      <div className='body'>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Start
+                data={data}
+                optionAnswerTotal={optionAnswerTotal}
+                setOptionAnswerTotal={setOptionAnswerTotal}
+                loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
+              />
+            }
+          />
+          <Route
+            path='/game'
+            element={
+              <Game
+                data={data}
+                optionAnswerTotal={optionAnswerTotal}
+                loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
+                question={question}
+                setQuestion={setQuestion}
+                answer={answer}
+                setAnswer={setAnswer}
+                counter={counter}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
 

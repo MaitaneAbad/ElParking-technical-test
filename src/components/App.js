@@ -1,19 +1,19 @@
-//import '../styles/main.scss';
-import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Game from './Game.js';
-import Start from './Start.js';
+import '../styles/App.scss';
+//import { Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import callToApi from './services/callToApi';
+//import ls from './services/localStorage';
+import Start from './Start';
+import Game from './Game';
 
-import Footer from './Footer';
-
-function App() {
+const App = () => {
   const [data, setData] = useState({});
   const [counter, setCounter] = useState(0);
   const [optionAnswerTotal, setOptionAnswerTotal] = useState([]);
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
-  const [hidden, setHidden] = useState('hidden');
+  const [hiddenStart, setHiddenStart] = useState('');
+  const [hiddenGame, setHiddenGame] = useState('hidden');
   // const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
 
   // ls.set('localStorage', localStorage);
@@ -32,46 +32,34 @@ function App() {
       setData(response);
     });
   }, []);
+
   return (
-    <div className='page'>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <Start
-              setHidden={setHidden}
-              hidden={hidden}
-              data={data}
-              optionAnswerTotal={optionAnswerTotal}
-              setOptionAnswerTotal={setOptionAnswerTotal}
-              loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
-            />
-          }
-        />
-        <Route
-          path='/game'
-          element={
-            <Game
-              data={data}
-              optionAnswerTotal={optionAnswerTotal}
-              loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
-              question={question}
-              setQuestion={setQuestion}
-              answer={answer}
-              setAnswer={setAnswer}
-              counter={counter}
-            >
-              {' '}
-              Página principal
-            </Game>
-          }
-        />
-        <Route path='/instrucciones' element={<> Instrucciones</>} />
-        <Route path='*' element={<>Página no encontrada</>} />
-      </Routes>
-      <Footer setHidden={setHidden} hidden={hidden}></Footer>
+    <div className='body'>
+      <Start
+        data={data}
+        optionAnswerTotal={optionAnswerTotal}
+        setOptionAnswerTotal={setOptionAnswerTotal}
+        loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
+        setHiddenStart={setHiddenStart}
+        hiddenStart={hiddenStart}
+        setHiddenGame={setHiddenGame}
+      />
+
+      <Game
+        setHiddenStart={setHiddenStart}
+        hiddenStart={hiddenStart}
+        data={data}
+        optionAnswerTotal={optionAnswerTotal}
+        loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
+        question={question}
+        setQuestion={setQuestion}
+        answer={answer}
+        setAnswer={setAnswer}
+        counter={counter}
+        hiddenGame={hiddenGame}
+      />
     </div>
   );
-}
+};
 
 export default App;

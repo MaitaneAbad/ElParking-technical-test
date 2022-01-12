@@ -1,7 +1,5 @@
 const callToApi = () => {
-  return fetch(
-    'https://opentdb.com/api.php?amount=10&category=19&type=multiple'
-  )
+  return fetch('http://opentdb.com/api.php?amount=10&category=19&type=multiple')
     .then((response) => response.json())
     .then((response) => {
       const data = response.results.map((data) => {

@@ -1,8 +1,7 @@
 import '../styles/layout/start.scss';
-import { NavLink } from 'react-router-dom';
 
 const Start = (props) => {
-  console.log();
+  console.log(props);
   const createAnswers = () => {
     for (let i = 0; i < props.data.length; i++) {
       const subArrayAux = [];
@@ -16,20 +15,20 @@ const Start = (props) => {
       props.optionAnswerTotal.push(subArrayAux);
     }
     props.loadNextQuestionAndAnswers();
+    props.setHiddenStart('hidden');
+    props.setHiddenGame('');
   };
 
   return (
-    <section className={`landing ${props.hidden}`}>
+    <section className={`landing ${props.hiddenStart}`}>
       <h1 className='landing--title'>Tri-vi-al</h1>
       <form className='landing--form'>
-        <NavLink to='game'>
-          <input
-            className='landing--form__button'
-            type='button'
-            value='Comenzar juego'
-            onClick={createAnswers}
-          />
-        </NavLink>
+        <input
+          className='landing--form__button'
+          type='button'
+          value='Comenzar juego'
+          onClick={createAnswers}
+        />
       </form>
     </section>
   );

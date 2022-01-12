@@ -1,8 +1,7 @@
 //import Answers from './Answers';
-//import '../styles/layout/game.scss';
+import '../styles/layout/game.scss';
 import { useState } from 'react/cjs/react.development';
-import { Link, Route, Routes } from 'react-router-dom';
-//import Header from './components/Header';
+import Header from './Header';
 
 const Game = (props) => {
   const [answers, setAnswers] = useState('');
@@ -16,7 +15,7 @@ const Game = (props) => {
   const [counterTrue, setCounterTrue] = useState(0);
 
   const [error, setError] = useState('');
-
+  console.log(props);
   const handleOptionInputs = (ev) => {
     setError('');
     setAnswers(ev.target.value);
@@ -56,7 +55,9 @@ const Game = (props) => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
   };
-
+  const reset = () => {
+    window.location.reload();
+  };
   const resumenQuestion = questionAnswerPack.map((item, i) => {
     console.log(props);
 
@@ -131,8 +132,8 @@ const Game = (props) => {
   }
 
   return (
-    <main className='main'>
-      {/* <Header /> */}
+    <main className={`main ${props.hiddenGame}`}>
+      <Header />
       <section className='main__sectionQuestions'>
         <ul className={quiz}>
           <li
@@ -227,9 +228,8 @@ const Game = (props) => {
         <div className={resumen}>
           <h2>Resumen del Tri-vi-al</h2>
           <ul>{resumenQuestion}</ul>
-          <Link to='/'>
-            <button>Reset</button>
-          </Link>
+
+          <button onClick={reset}>Reset</button>
         </div>
       </section>
     </main>

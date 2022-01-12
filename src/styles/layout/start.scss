@@ -5,18 +5,19 @@
   justify-content: center;
   align-items: center;
   &--title {
-    margin-bottom: 150px;
+    margin: 50px auto;
     color: white;
     text-transform: uppercase;
     letter-spacing: 8px;
-    font-size: 14px;
+    font-size: 20px;
     text-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
       0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, 0 0 1.3rem #bc13fe;
     @media (min-width: 768px) {
-      font-size: 20px;
+      font-size: 25px;
     }
   }
   &--form {
+    margin-top: 150px;
     &__button {
       padding: 10px;
       border: 0.2rem solid #fff;

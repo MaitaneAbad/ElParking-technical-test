@@ -2,10 +2,12 @@
 import '../styles/layout/game.scss';
 import { useState } from 'react/cjs/react.development';
 import { Link, Route, Routes } from 'react-router-dom';
+import Header from './Header';
 
 const Game = (props) => {
   const [answers, setAnswers] = useState('');
   const [resumen, setResumen] = useState('hidden');
+  const [sectionHidden, setSectionHidden] = useState('hidden');
   const [quiz, setQuiz] = useState('');
   const [viewQuestions, setViewQuestions] = useState('');
   const [checkedValid, setCheckedValid] = useState(false);
@@ -33,8 +35,10 @@ const Game = (props) => {
   const handleNextQuestion = (ev) => {
     const arrayAux = [];
     if (checkedValid !== true) {
+      setSectionHidden('');
       setError('Tienes que seleccionar alguna respuesta');
     } else {
+      setSectionHidden('hidden');
       arrayAux.push(props.question);
       arrayAux.push(answers);
       arrayAux.push(validAswers(ev.target.value));
@@ -52,22 +56,38 @@ const Game = (props) => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
   };
-  console.log(props.data);
+
   const resumenQuestion = questionAnswerPack.map((item, i) => {
+    console.log(props);
+
     return (
-      <>
-        <li key={i}>
-          <p>{item[0]}</p>
-          <p>
+      <li className='main__sectionQuestions--viewQuestion__list--item' key={i}>
+        <p className='main__sectionQuestions--viewQuestion__list--item__question'>
+          {item[0]}
+        </p>
+        <div className='main__sectionQuestions--viewQuestion__list--item__answer'>
+          <div className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection'>
             {item[2] === true ? (
-              <i className='fas fa-check-circle'></i>
+              <i className=' main__sectionQuestions--viewQuestion__list--item__answer--iconSection__correct fas fa-check-circle'></i>
             ) : (
-              <i className='fas fa-times-circle'></i>
+              <i className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection__error fas fa-times-circle'></i>
             )}
-            {item[1]}
-          </p>
-        </li>
-      </>
+            <p className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection__answerClick'>
+              {item[1]}
+            </p>
+          </div>
+          {item[2] === false ? (
+            <p className='main__sectionQuestions--viewQuestion__list--item__answer--correctAnswer'>
+              Correct:
+              <span className='main__sectionQuestions--viewQuestion__list--item__answer--correctAnswer__span'>
+                {props.data[i].correctAnswer}{' '}
+              </span>
+            </p>
+          ) : (
+            ''
+          )}
+        </div>
+      </li>
     );
   });
   // const p = () => {
@@ -85,82 +105,134 @@ const Game = (props) => {
   function button() {
     const changeButton = props.counter;
     if (changeButton < props.data.length) {
-      return <button onClick={handleNextQuestion}>Siguiente</button>;
+      return (
+        <div className='main__sectionQuestions--list__containerButton'>
+          <button
+            className='main__sectionQuestions--list__containerButton--button'
+            onClick={handleNextQuestion}
+          >
+            Siguiente
+          </button>
+        </div>
+      );
     } else {
       return (
-        <>
-          <div id={props.data.length} onClick={handleNextQuestion}>
+        <div className='main__sectionQuestions--list__containerButton'>
+          <button
+            className='main__sectionQuestions--list__containerButton--button'
+            id={props.data.length}
+            onClick={handleNextQuestion}
+          >
             Finalizar
-          </div>
-        </>
+          </button>
+        </div>
       );
     }
   }
 
   return (
-    <>
-      <ul className={quiz}>
-        <li key={props.counter} id={props.counter}>
-          {props.question}
-          <form onSubmit={handleSubmit}>
-            {' '}
-            <label className='label-radio' htmlFor='firstOption'>
-              {props.answer[0]}
-            </label>
-            <input
-              type='radio'
-              name='firstOption'
-              id={props.answer[0]}
-              value={props.answer[0]}
-              checked={answers === props.answer[0]}
-              onChange={handleOptionInputs}
-            />{' '}
-            <label className='label-radio' htmlFor='secondOption'>
-              {props.answer[1]}
-            </label>
-            <input
-              type='radio'
-              name='secondOption'
-              id={props.answer[1]}
-              value={props.answer[1]}
-              checked={answers === props.answer[1]}
-              onChange={handleOptionInputs}
-            />{' '}
-            <label className='label-radio' htmlFor='thirdthOption'>
-              {props.answer[2]}
-            </label>
-            <input
-              type='radio'
-              name='thirdthOption'
-              id={props.answer[2]}
-              value={props.answer[2]}
-              checked={answers === props.answer[2]}
-              onChange={handleOptionInputs}
-            />{' '}
-            <label className='label-radio' htmlFor='fourthOption'>
-              {props.answer[3]}
-            </label>
-            <input
-              type='radio'
-              name='fourthOption'
-              id={props.answer[3]}
-              value={props.answer[3]}
-              checked={answers === props.answer[3]}
-              onChange={handleOptionInputs}
-            />
-          </form>
-          {button()}
-        </li>
-      </ul>
-      {error}
-      <ul className={viewQuestions}>{resumenQuestion}</ul>
-      <div className={resumen}>
-        Resumen del Tri-vi-al<div>{resumenQuestion}</div>
-        <Link to='/'>
-          <button>Reset</button>
-        </Link>
-      </div>
-    </>
+    <main className='main'>
+      <Header />
+      <section className='main__sectionQuestions'>
+        <ul className={quiz}>
+          <li
+            className='main__sectionQuestions--list'
+            key={props.counter}
+            id={props.counter}
+          >
+            <p className='main__sectionQuestions--list__question'>
+              {props.question}
+            </p>
+            <form
+              onSubmit={handleSubmit}
+              className='main__sectionQuestions--list__form'
+            >
+              {' '}
+              <label
+                className='main__sectionQuestions--list__form--labels'
+                htmlFor='firstOption'
+              >
+                <input
+                  className='main__sectionQuestions--list__form--labels__inputs'
+                  type='radio'
+                  name='firstOption'
+                  id={props.answer[0]}
+                  value={props.answer[0]}
+                  checked={answers === props.answer[0]}
+                  onChange={handleOptionInputs}
+                />
+                {props.answer[0]}
+              </label>
+              <label
+                className='main__sectionQuestions--list__form--labels'
+                htmlFor='secondOption'
+              >
+                <input
+                  className='main__sectionQuestions--list__form--labels__inputs'
+                  type='radio'
+                  name='secondOption'
+                  id={props.answer[1]}
+                  value={props.answer[1]}
+                  checked={answers === props.answer[1]}
+                  onChange={handleOptionInputs}
+                />
+                {props.answer[1]}
+              </label>{' '}
+              <label
+                className='main__sectionQuestions--list__form--labels'
+                htmlFor='thirdthOption'
+              >
+                <input
+                  className='main__sectionQuestions--list__form--labels__inputs'
+                  type='radio'
+                  name='thirdthOption'
+                  id={props.answer[2]}
+                  value={props.answer[2]}
+                  checked={answers === props.answer[2]}
+                  onChange={handleOptionInputs}
+                />
+                {props.answer[2]}
+              </label>
+              <label
+                className='main__sectionQuestions--list__form--labels'
+                htmlFor='fourthOption'
+              >
+                <input
+                  className='main__sectionQuestions--list__form--labels__inputs'
+                  type='radio'
+                  name='fourthOption'
+                  id={props.answer[3]}
+                  value={props.answer[3]}
+                  checked={answers === props.answer[3]}
+                  onChange={handleOptionInputs}
+                />
+                {props.answer[3]}
+              </label>
+            </form>
+            {button()}
+          </li>
+        </ul>
+        <article className={`main__error ${sectionHidden}`}>
+          <p className='main__error--title'>{error}</p>
+        </article>
+        <article className='main__sectionQuestions--viewQuestion'>
+          <ul
+            className={`main__sectionQuestions--viewQuestion__list ${viewQuestions}`}
+          >
+            {resumenQuestion}
+          </ul>
+        </article>
+      </section>
+      <section className='main__sectionAnswers'>
+        <div className={resumen}>
+          <h2>Resumen del Tri-vi-al</h2>
+          <ul>{resumenQuestion}</ul>
+          <Link to='/'>
+            <button>Reset</button>
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 };
 export default Game;

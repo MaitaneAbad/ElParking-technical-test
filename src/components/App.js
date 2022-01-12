@@ -15,11 +15,6 @@ const App = () => {
   // const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
 
   // ls.set('localStorage', localStorage);
-  useEffect(() => {
-    callToApi().then((response) => {
-      setData(response);
-    });
-  }, []);
   const loadNextQuestionAndAnswers = () => {
     if (counter < data.length) {
       const titleQuestion = data[counter].questions;
@@ -30,6 +25,12 @@ const App = () => {
       setCounter(counter + 1);
     }
   };
+  useEffect(() => {
+    callToApi().then((response) => {
+      setData(response);
+    });
+  }, []);
+
   return (
     <div className='body'>
       <Routes>

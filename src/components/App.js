@@ -59,7 +59,8 @@ const App = () => {
               counter={counter}
             />
           }
-        />
+        />{' '}
+        <Route path='*' element={<>Página no encontrada</>} />
       </Routes>
     </div>
   );

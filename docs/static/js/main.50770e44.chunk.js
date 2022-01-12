@@ -1,2 +1,0 @@
-(this["webpackJsonpreact-starter-kit"]=this["webpackJsonpreact-starter-kit"]||[]).push([[0],{11:function(t,e,r){"use strict";r.r(e);r(0);var n=r(3),a=r.n(n),c=r(4),i=(r(9),r(1)),s=function(){return Object(i.jsx)(i.Fragment,{children:"Pantalla principal para el juego del trivial"})};a.a.render(Object(i.jsx)(c.a,{children:Object(i.jsx)(s,{})}),document.getElementById("root"))},9:function(t,e,r){}},[[11,1,2]]]);
-//# sourceMappingURL=main.50770e44.chunk.js.map

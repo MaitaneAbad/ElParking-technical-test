@@ -30,6 +30,7 @@ const App = () => {
   useEffect(() => {
     callToApi().then((response) => {
       setData(response);
+      console.log(response);
     });
   }, []);
 

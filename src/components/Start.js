@@ -2,6 +2,7 @@ import '../styles/layout/start.scss';
 import { NavLink } from 'react-router-dom';
 
 const Start = (props) => {
+  console.log();
   const createAnswers = () => {
     for (let i = 0; i < props.data.length; i++) {
       const subArrayAux = [];
@@ -18,7 +19,7 @@ const Start = (props) => {
   };
 
   return (
-    <section className='landing'>
+    <section className={`landing ${props.hidden}`}>
       <h1 className='landing--title'>Tri-vi-al</h1>
       <form className='landing--form'>
         <NavLink to='game'>

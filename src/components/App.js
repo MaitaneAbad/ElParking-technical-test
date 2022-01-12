@@ -1,17 +1,19 @@
-import '../styles/App.scss';
-import { Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+//import '../styles/main.scss';
+import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Game from './Game.js';
+import Start from './Start.js';
 import callToApi from './services/callToApi';
-//import ls from './services/localStorage';
-import Start from './Start';
-import Game from './Game';
 
-const App = () => {
+import Footer from './Footer';
+
+function App() {
   const [data, setData] = useState({});
   const [counter, setCounter] = useState(0);
   const [optionAnswerTotal, setOptionAnswerTotal] = useState([]);
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [hidden, setHidden] = useState('hidden');
   // const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
 
   // ls.set('localStorage', localStorage);
@@ -30,14 +32,15 @@ const App = () => {
       setData(response);
     });
   }, []);
-
   return (
-    <div className='body'>
+    <div className='page'>
       <Routes>
         <Route
           path='/'
           element={
             <Start
+              setHidden={setHidden}
+              hidden={hidden}
               data={data}
               optionAnswerTotal={optionAnswerTotal}
               setOptionAnswerTotal={setOptionAnswerTotal}
@@ -57,13 +60,18 @@ const App = () => {
               answer={answer}
               setAnswer={setAnswer}
               counter={counter}
-            />
+            >
+              {' '}
+              Página principal
+            </Game>
           }
-        />{' '}
+        />
+        <Route path='/instrucciones' element={<> Instrucciones</>} />
         <Route path='*' element={<>Página no encontrada</>} />
       </Routes>
+      <Footer setHidden={setHidden} hidden={hidden}></Footer>
     </div>
   );
-};
+}
 
 export default App;

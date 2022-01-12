@@ -1,5 +1,5 @@
 //import Answers from './Answers';
-import '../styles/layout/game.scss';
+//import '../styles/layout/game.scss';
 import { useState } from 'react/cjs/react.development';
 import { Link, Route, Routes } from 'react-router-dom';
 //import Header from './components/Header';

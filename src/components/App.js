@@ -58,7 +58,7 @@ const App = () => {
               counter={counter}
             />
           }
-        />{' '}
+        />
       </Routes>
     </div>
   );

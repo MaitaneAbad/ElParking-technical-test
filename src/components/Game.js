@@ -4,25 +4,26 @@ import { useState } from 'react/cjs/react.development';
 import { Link, Route, Routes } from 'react-router-dom';
 
 const Game = (props) => {
-  const [optionFirst, setOptionFirst] = useState('');
+  const [answers, setAnswers] = useState('');
   const [resumen, setResumen] = useState('hidden');
   const [quiz, setQuiz] = useState('');
   const [viewQuestions, setViewQuestions] = useState('');
   const [checkedValid, setCheckedValid] = useState(false);
   const [questionAnswerPack, setQuestionAnswerPack] = useState([]);
+  const [counterFalse, setCounterFalse] = useState(0);
+  const [counterTrue, setCounterTrue] = useState(0);
+
   const [error, setError] = useState('');
-  const [answerValid, setAnswerValid] = useState('');
 
   const handleOptionInputs = (ev) => {
     setError('');
-    setOptionFirst(ev.target.value);
+    setAnswers(ev.target.value);
     setCheckedValid(ev.target.checked);
     validAswers(ev.target.value);
   };
-  //
+
   const validAswers = () => {
-    console.log(props.data[props.counter - 1].correctAnswer);
-    if (optionFirst === props.data[props.counter - 1].correctAnswer) {
+    if (answers === props.data[props.counter - 1].correctAnswer) {
       return true;
     } else {
       return false;
@@ -33,15 +34,11 @@ const Game = (props) => {
     const arrayAux = [];
     if (checkedValid !== true) {
       setError('Tienes que seleccionar alguna respuesta');
-      console.log('error');
     } else {
-      console.log(props.question);
       arrayAux.push(props.question);
-      arrayAux.push(optionFirst);
+      arrayAux.push(answers);
       arrayAux.push(validAswers(ev.target.value));
-      console.log(arrayAux);
       questionAnswerPack.push(arrayAux);
-      console.log(questionAnswerPack);
       handleOptionInputs(ev);
       props.loadNextQuestionAndAnswers();
     }
@@ -51,7 +48,6 @@ const Game = (props) => {
       setViewQuestions('hidden');
       setQuiz('hidden');
     }
-    // Cogeme la pregunta y la respuesta y muestramelá más abajo
   };
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -74,6 +70,17 @@ const Game = (props) => {
       </>
     );
   });
+  // const p = () => {
+  //   questionAnswerPack.map((item) => {
+  //     if (item[2] === true) {
+  //       setCounterTrue(+1);
+  //       console.log(counterTrue);
+  //     } else if (item[2] === false) {
+  //       setCounterFalse(+1);
+  //       console.log(counterFalse);
+  //     }
+  //   });
+  // };
 
   function button() {
     const changeButton = props.counter;
@@ -105,7 +112,7 @@ const Game = (props) => {
               name='firstOption'
               id={props.answer[0]}
               value={props.answer[0]}
-              checked={optionFirst === props.answer[0]}
+              checked={answers === props.answer[0]}
               onChange={handleOptionInputs}
             />{' '}
             <label className='label-radio' htmlFor='secondOption'>
@@ -116,7 +123,7 @@ const Game = (props) => {
               name='secondOption'
               id={props.answer[1]}
               value={props.answer[1]}
-              checked={optionFirst === props.answer[1]}
+              checked={answers === props.answer[1]}
               onChange={handleOptionInputs}
             />{' '}
             <label className='label-radio' htmlFor='thirdthOption'>
@@ -127,7 +134,7 @@ const Game = (props) => {
               name='thirdthOption'
               id={props.answer[2]}
               value={props.answer[2]}
-              checked={optionFirst === props.answer[2]}
+              checked={answers === props.answer[2]}
               onChange={handleOptionInputs}
             />{' '}
             <label className='label-radio' htmlFor='fourthOption'>
@@ -138,7 +145,7 @@ const Game = (props) => {
               name='fourthOption'
               id={props.answer[3]}
               value={props.answer[3]}
-              checked={optionFirst === props.answer[3]}
+              checked={answers === props.answer[3]}
               onChange={handleOptionInputs}
             />
           </form>
@@ -149,6 +156,9 @@ const Game = (props) => {
       <ul className={viewQuestions}>{resumenQuestion}</ul>
       <div className={resumen}>
         Resumen del Tri-vi-al<div>{resumenQuestion}</div>
+        <Link to='/'>
+          <button>Reset</button>
+        </Link>
       </div>
     </>
   );

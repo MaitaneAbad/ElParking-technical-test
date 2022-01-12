@@ -1,9 +1,16 @@
 //import Answers from './Answers';
 import '../styles/layout/game.scss';
-import { useState } from 'react/cjs/react.development';
+import React, { useState } from 'react';
 import Header from './Header';
 
 const Game = (props) => {
+  console.log(props);
+  const handleOptionInputs = (ev) => {
+    setError('');
+    setAnswers(ev.target.value);
+    setCheckedValid(ev.target.checked);
+    validAswers(ev.target.value);
+  };
   const [answers, setAnswers] = useState('');
   const [resumen, setResumen] = useState('hidden');
   const [sectionHidden, setSectionHidden] = useState('hidden');
@@ -13,16 +20,7 @@ const Game = (props) => {
   const [questionAnswerPack, setQuestionAnswerPack] = useState([]);
   const [counterFalse, setCounterFalse] = useState(0);
   const [counterTrue, setCounterTrue] = useState(0);
-
   const [error, setError] = useState('');
-  console.log(props);
-  const handleOptionInputs = (ev) => {
-    setError('');
-    setAnswers(ev.target.value);
-    setCheckedValid(ev.target.checked);
-    validAswers(ev.target.value);
-  };
-
   const validAswers = () => {
     if (answers === props.data[props.counter - 1].correctAnswer) {
       return true;

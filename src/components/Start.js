@@ -1,5 +1,5 @@
 import '../styles/layout/start.scss';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Start = (props) => {
   const createAnswers = () => {
@@ -21,14 +21,14 @@ const Start = (props) => {
     <section className='landing'>
       <h1 className='landing--title'>Tri-vi-al</h1>
       <form className='landing--form'>
-        <Link to='game'>
+        <NavLink to='game'>
           <input
             className='landing--form__button'
             type='button'
             value='Comenzar juego'
             onClick={createAnswers}
           />
-        </Link>
+        </NavLink>
       </form>
     </section>
   );

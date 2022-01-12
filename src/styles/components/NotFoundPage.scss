@@ -1,0 +1,14 @@
+.nofoundpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media all and (max-width: 500px) {
+    flex-direction: column;
+  }
+  &_message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,15 +1,25 @@
 // RESET
-
-@font-face {
-  font-family: 'KgTenThousandReasons';
-  src: url('../fonts/KgTenThousandReasons-R1ll.ttf') format('truetype');
-}
-
 * {
-  font-family: 'KgTenThousandReasons', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-weight: normal;
-  color: white;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  color: inherit;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+A {
+  text-decoration: none;
 }

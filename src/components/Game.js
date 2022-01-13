@@ -4,16 +4,10 @@ import React, { useState } from 'react';
 import Header from './Header';
 import ResumenQuestion from './ResumenQuestion';
 import ResumenGame from './ResumenGame';
-import { NavLink } from 'react-router-dom';
 
 const Game = (props) => {
   console.log(props);
-  const handleOptionInputs = (ev) => {
-    setError('');
-    setAnswers(ev.target.value);
-    setCheckedValid(ev.target.checked);
-    validAswers(ev.target.value);
-  };
+
   const [answers, setAnswers] = useState('');
   const [resumen, setResumen] = useState('hidden');
   const [sectionHidden, setSectionHidden] = useState('hidden');
@@ -22,6 +16,12 @@ const Game = (props) => {
   const [checkedValid, setCheckedValid] = useState(false);
   const [questionAnswerPack, setQuestionAnswerPack] = useState([]);
   const [error, setError] = useState('');
+  const handleOptionInputs = (ev) => {
+    setError('');
+    setAnswers(ev.target.value);
+    setCheckedValid(ev.target.checked);
+    validAswers(ev.target.value);
+  };
   const validAswers = () => {
     if (answers === props.data[props.counter - 1].correctAnswer) {
       return true;
@@ -57,51 +57,6 @@ const Game = (props) => {
       }
     }
   };
-
-  // const resumenQuestion = questionAnswerPack.map((item, i) => {
-  //   console.log(props);
-
-  //   return (
-  //     <li className='main__sectionQuestions--viewQuestion__list--item' key={i}>
-  //       <p className='main__sectionQuestions--viewQuestion__list--item__question'>
-  //         {item[0]}
-  //       </p>
-  //       <div className='main__sectionQuestions--viewQuestion__list--item__answer'>
-  //         <div className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection'>
-  //           {item[2] === true ? (
-  //             <i className=' main__sectionQuestions--viewQuestion__list--item__answer--iconSection__correct fas fa-check-circle'></i>
-  //           ) : (
-  //             <i className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection__error fas fa-times-circle'></i>
-  //           )}
-  //           <p className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection__answerClick'>
-  //             {item[1]}
-  //           </p>
-  //         </div>
-  //         {item[2] === false ? (
-  //           <p className='main__sectionQuestions--viewQuestion__list--item__answer--correctAnswer'>
-  //             Correct:
-  //             <span className='main__sectionQuestions--viewQuestion__list--item__answer--correctAnswer__span'>
-  //               {props.data[i].correctAnswer}{' '}
-  //             </span>
-  //           </p>
-  //         ) : (
-  //           ''
-  //         )}
-  //       </div>
-  //     </li>
-  //   );
-  // });
-  // const p = () => {
-  //   questionAnswerPack.map((item) => {
-  //     if (item[2] === true) {
-  //       setCounterTrue(+1);
-  //       console.log(counterTrue);
-  //     } else if (item[2] === false) {
-  //       setCounterFalse(+1);
-  //       console.log(counterFalse);
-  //     }
-  //   });
-  // };
 
   function button() {
     const changeButton = props.counter;
@@ -218,6 +173,7 @@ const Game = (props) => {
                 </p>
               </label>
             </form>
+
             {button()}
           </li>
         </ul>
@@ -258,36 +214,6 @@ const Game = (props) => {
         counter={props.counter}
         setCounter={props.setCounter}
       />
-      {/* <section className='main__sectionAnswers'>
-        <div className={`main__sectionAnswers--resumen ${resumen}`}>
-          <h2 className='main__sectionAnswers--resumen__title'>
-            Resumen del juego
-          </h2>
-          <ul className='main__sectionAnswers--resumen__list'>
-            <ResumenQuestion
-              questionAnswerPack={questionAnswerPack}
-              setQuestionAnswerPack={setQuestionAnswerPack}
-              data={props.data}
-              optionAnswerTotal={props.optionAnswerTotal}
-              loadNextQuestionAndAnswers={props.loadNextQuestionAndAnswers}
-              question={props.question}
-              setQuestion={props.setQuestion}
-              answer={props.answer}
-              setAnswer={props.setAnswer}
-              counter={props.counter}
-              setCounter={props.setCounter}
-            />
-          </ul>
-          <NavLink to='/'>
-            <button
-              className='main__sectionAnswers--resumen__buttonReset'
-              onClick={handleReset}
-            >
-              Reset
-            </button>
-          </NavLink>
-        </div>
-      </section> */}
     </main>
   );
 };

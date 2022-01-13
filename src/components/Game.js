@@ -3,6 +3,7 @@ import '../styles/layout/game.scss';
 import React, { useState } from 'react';
 import Header from './Header';
 import ResumenQuestion from './ResumenQuestion';
+import ResumenGame from './ResumenGame';
 import { NavLink } from 'react-router-dom';
 
 const Game = (props) => {
@@ -101,9 +102,7 @@ const Game = (props) => {
   //     }
   //   });
   // };
-  const handleReset = () => {
-    props.setCounter(0);
-  };
+
   function button() {
     const changeButton = props.counter;
     if (changeButton < props.data.length) {
@@ -245,7 +244,21 @@ const Game = (props) => {
           </ul>
         </article>
       </section>
-      <section className='main__sectionAnswers'>
+      <ResumenGame
+        resumen={resumen}
+        questionAnswerPack={questionAnswerPack}
+        setQuestionAnswerPack={setQuestionAnswerPack}
+        data={props.data}
+        optionAnswerTotal={props.optionAnswerTotal}
+        loadNextQuestionAndAnswers={props.loadNextQuestionAndAnswers}
+        question={props.question}
+        setQuestion={props.setQuestion}
+        answer={props.answer}
+        setAnswer={props.setAnswer}
+        counter={props.counter}
+        setCounter={props.setCounter}
+      />
+      {/* <section className='main__sectionAnswers'>
         <div className={`main__sectionAnswers--resumen ${resumen}`}>
           <h2 className='main__sectionAnswers--resumen__title'>
             Resumen del juego
@@ -274,7 +287,7 @@ const Game = (props) => {
             </button>
           </NavLink>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 };

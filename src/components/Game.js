@@ -251,7 +251,6 @@ const Game = (props) => {
           </NavLink>
         </div>
       </section>
-      <Footer />
     </main>
   );
 };

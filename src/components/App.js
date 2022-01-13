@@ -6,6 +6,7 @@ import Instructions from './Instructions';
 //import ls from './services/localStorage';
 import Start from './Start';
 import Game from './Game';
+import Footer from './Footer';
 
 const App = () => {
   const [data, setData] = useState({});
@@ -65,6 +66,7 @@ const App = () => {
         <Route path='instructions' element={<Instructions />} />
         <Route path='*' element={<>Página no encontrada</>} />
       </Routes>
+      <Footer />
     </div>
   );
 };

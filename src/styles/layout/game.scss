@@ -52,31 +52,48 @@
     &--list {
       border-radius: 20px;
       box-shadow: 0px 0px 11px 15px #bb13fe7a;
-
       max-width: 400px;
       padding: 20px;
       width: 70%;
-      margin: auto;
+      margin: auto auto 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @media (min-width: 325px) {
+        width: 250px;
+        min-height: 250px;
+      }
+      @media (min-width: 768px) {
+        width: 550px;
+        height: 290px;
+      }
       &__question {
-        border: #bc13fe 2px double;
         text-align: center;
         margin: 20px 10px;
       }
       &__form {
-        border: orange 2px solid;
         display: flex;
         flex-direction: column;
+
         @media (min-width: 768px) {
           display: grid;
-          justify-content: center;
           grid-template-columns: 1fr 1fr;
+          text-align: center;
         }
         &--labels {
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          padding-left: 15px;
           &__inputs {
             margin: 5px;
             @media (min-width: 768px) {
               grid-column: 1 / 2;
             }
+          }
+          &__option {
+            text-align: start;
+            margin-left: 5px;
           }
         }
       }
@@ -99,18 +116,17 @@
         &--item {
           margin: auto;
           width: 90%;
-          border-bottom: #fff 1px dotted;
+          border-bottom: #be2af8cc 1px dotted;
           padding-bottom: 15px;
           &__question {
-            margin: 10px;
+            margin: 15px;
           }
           &__answer {
-            border: 1px red solid;
+            margin-top: 15px;
             &--iconSection {
               margin: 5px;
               display: flex;
               justify-content: center;
-              border: 1px blue solid;
               &__correct {
                 color: green;
                 font-size: 18px;

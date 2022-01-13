@@ -2,6 +2,7 @@
 import '../styles/layout/game.scss';
 import React, { useState } from 'react';
 import Header from './Header';
+import { NavLink } from 'react-router-dom';
 
 const Game = (props) => {
   console.log(props);
@@ -18,8 +19,6 @@ const Game = (props) => {
   const [viewQuestions, setViewQuestions] = useState('');
   const [checkedValid, setCheckedValid] = useState(false);
   const [questionAnswerPack, setQuestionAnswerPack] = useState([]);
-  const [counterFalse, setCounterFalse] = useState(0);
-  const [counterTrue, setCounterTrue] = useState(0);
   const [error, setError] = useState('');
   const validAswers = () => {
     if (answers === props.data[props.counter - 1].correctAnswer) {
@@ -45,17 +44,18 @@ const Game = (props) => {
     }
 
     if (ev.target.id === '10') {
-      setResumen('');
-      setViewQuestions('hidden');
-      setQuiz('hidden');
+      console.log(ev);
+      if (checkedValid !== true) {
+        setSectionHidden('');
+        setError('Tienes que seleccionar alguna respuesta');
+      } else {
+        setResumen('');
+        setViewQuestions('hidden');
+        setQuiz('hidden');
+      }
     }
   };
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-  };
-  const reset = () => {
-    window.location.reload();
-  };
+
   const resumenQuestion = questionAnswerPack.map((item, i) => {
     console.log(props);
 
@@ -100,7 +100,9 @@ const Game = (props) => {
   //     }
   //   });
   // };
-
+  const handleReset = () => {
+    props.setCounter(0);
+  };
   function button() {
     const changeButton = props.counter;
     if (changeButton < props.data.length) {
@@ -130,7 +132,7 @@ const Game = (props) => {
   }
 
   return (
-    <main className={`main ${props.hiddenGame}`}>
+    <main className='main'>
       <Header />
       <section className='main__sectionQuestions'>
         <ul className={quiz}>
@@ -142,10 +144,7 @@ const Game = (props) => {
             <p className='main__sectionQuestions--list__question'>
               {props.question}
             </p>
-            <form
-              onSubmit={handleSubmit}
-              className='main__sectionQuestions--list__form'
-            >
+            <form className='main__sectionQuestions--list__form'>
               {' '}
               <label
                 className='main__sectionQuestions--list__form--labels'
@@ -160,7 +159,9 @@ const Game = (props) => {
                   checked={answers === props.answer[0]}
                   onChange={handleOptionInputs}
                 />
-                {props.answer[0]}
+                <p className='main__sectionQuestions--list__form--labels__option'>
+                  {props.answer[0]}
+                </p>
               </label>
               <label
                 className='main__sectionQuestions--list__form--labels'
@@ -175,7 +176,9 @@ const Game = (props) => {
                   checked={answers === props.answer[1]}
                   onChange={handleOptionInputs}
                 />
-                {props.answer[1]}
+                <p className='main__sectionQuestions--list__form--labels__option'>
+                  {props.answer[1]}
+                </p>
               </label>{' '}
               <label
                 className='main__sectionQuestions--list__form--labels'
@@ -189,8 +192,10 @@ const Game = (props) => {
                   value={props.answer[2]}
                   checked={answers === props.answer[2]}
                   onChange={handleOptionInputs}
-                />
-                {props.answer[2]}
+                />{' '}
+                <p className='main__sectionQuestions--list__form--labels__option'>
+                  {props.answer[2]}
+                </p>
               </label>
               <label
                 className='main__sectionQuestions--list__form--labels'
@@ -204,8 +209,10 @@ const Game = (props) => {
                   value={props.answer[3]}
                   checked={answers === props.answer[3]}
                   onChange={handleOptionInputs}
-                />
-                {props.answer[3]}
+                />{' '}
+                <p className='main__sectionQuestions--list__form--labels__option'>
+                  {props.answer[3]}
+                </p>
               </label>
             </form>
             {button()}
@@ -226,8 +233,9 @@ const Game = (props) => {
         <div className={resumen}>
           <h2>Resumen del Tri-vi-al</h2>
           <ul>{resumenQuestion}</ul>
-
-          <button onClick={reset}>Reset</button>
+          <NavLink to='/'>
+            <button onClick={handleReset}>Reset</button>
+          </NavLink>
         </div>
       </section>
     </main>

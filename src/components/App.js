@@ -28,7 +28,6 @@ const App = () => {
   useEffect(() => {
     callToApi().then((response) => {
       setData(response);
-      console.log(response);
     });
   }, []);
 
@@ -58,6 +57,7 @@ const App = () => {
               answer={answer}
               setAnswer={setAnswer}
               counter={counter}
+              setCounter={setCounter}
             />
           }
         />

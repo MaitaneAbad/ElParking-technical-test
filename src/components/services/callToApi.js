@@ -5,7 +5,6 @@ const callToApi = () => {
     .then((response) => response.json())
     .then((response) => {
       const data = response.results.map((data) => {
-        console.log(data);
         return {
           questions: data.question,
           correctAnswer: data.correct_answer,

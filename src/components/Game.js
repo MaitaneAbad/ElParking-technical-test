@@ -2,7 +2,7 @@
 import '../styles/layout/game.scss';
 import React, { useState } from 'react';
 import Header from './Header';
-import Footer from './Footer';
+import ResumenQuestion from './ResumenQuestion';
 import { NavLink } from 'react-router-dom';
 
 const Game = (props) => {
@@ -57,39 +57,39 @@ const Game = (props) => {
     }
   };
 
-  const resumenQuestion = questionAnswerPack.map((item, i) => {
-    console.log(props);
+  // const resumenQuestion = questionAnswerPack.map((item, i) => {
+  //   console.log(props);
 
-    return (
-      <li className='main__sectionQuestions--viewQuestion__list--item' key={i}>
-        <p className='main__sectionQuestions--viewQuestion__list--item__question'>
-          {item[0]}
-        </p>
-        <div className='main__sectionQuestions--viewQuestion__list--item__answer'>
-          <div className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection'>
-            {item[2] === true ? (
-              <i className=' main__sectionQuestions--viewQuestion__list--item__answer--iconSection__correct fas fa-check-circle'></i>
-            ) : (
-              <i className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection__error fas fa-times-circle'></i>
-            )}
-            <p className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection__answerClick'>
-              {item[1]}
-            </p>
-          </div>
-          {item[2] === false ? (
-            <p className='main__sectionQuestions--viewQuestion__list--item__answer--correctAnswer'>
-              Correct:
-              <span className='main__sectionQuestions--viewQuestion__list--item__answer--correctAnswer__span'>
-                {props.data[i].correctAnswer}{' '}
-              </span>
-            </p>
-          ) : (
-            ''
-          )}
-        </div>
-      </li>
-    );
-  });
+  //   return (
+  //     <li className='main__sectionQuestions--viewQuestion__list--item' key={i}>
+  //       <p className='main__sectionQuestions--viewQuestion__list--item__question'>
+  //         {item[0]}
+  //       </p>
+  //       <div className='main__sectionQuestions--viewQuestion__list--item__answer'>
+  //         <div className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection'>
+  //           {item[2] === true ? (
+  //             <i className=' main__sectionQuestions--viewQuestion__list--item__answer--iconSection__correct fas fa-check-circle'></i>
+  //           ) : (
+  //             <i className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection__error fas fa-times-circle'></i>
+  //           )}
+  //           <p className='main__sectionQuestions--viewQuestion__list--item__answer--iconSection__answerClick'>
+  //             {item[1]}
+  //           </p>
+  //         </div>
+  //         {item[2] === false ? (
+  //           <p className='main__sectionQuestions--viewQuestion__list--item__answer--correctAnswer'>
+  //             Correct:
+  //             <span className='main__sectionQuestions--viewQuestion__list--item__answer--correctAnswer__span'>
+  //               {props.data[i].correctAnswer}{' '}
+  //             </span>
+  //           </p>
+  //         ) : (
+  //           ''
+  //         )}
+  //       </div>
+  //     </li>
+  //   );
+  // });
   // const p = () => {
   //   questionAnswerPack.map((item) => {
   //     if (item[2] === true) {
@@ -229,7 +229,19 @@ const Game = (props) => {
           <ul
             className={`main__sectionQuestions--viewQuestion__list ${viewQuestions}`}
           >
-            {resumenQuestion}
+            <ResumenQuestion
+              questionAnswerPack={questionAnswerPack}
+              setQuestionAnswerPack={setQuestionAnswerPack}
+              data={props.data}
+              optionAnswerTotal={props.optionAnswerTotal}
+              loadNextQuestionAndAnswers={props.loadNextQuestionAndAnswers}
+              question={props.question}
+              setQuestion={props.setQuestion}
+              answer={props.answer}
+              setAnswer={props.setAnswer}
+              counter={props.counter}
+              setCounter={props.setCounter}
+            />
           </ul>
         </article>
       </section>
@@ -239,7 +251,19 @@ const Game = (props) => {
             Resumen del juego
           </h2>
           <ul className='main__sectionAnswers--resumen__list'>
-            {resumenQuestion}
+            <ResumenQuestion
+              questionAnswerPack={questionAnswerPack}
+              setQuestionAnswerPack={setQuestionAnswerPack}
+              data={props.data}
+              optionAnswerTotal={props.optionAnswerTotal}
+              loadNextQuestionAndAnswers={props.loadNextQuestionAndAnswers}
+              question={props.question}
+              setQuestion={props.setQuestion}
+              answer={props.answer}
+              setAnswer={props.setAnswer}
+              counter={props.counter}
+              setCounter={props.setCounter}
+            />
           </ul>
           <NavLink to='/'>
             <button

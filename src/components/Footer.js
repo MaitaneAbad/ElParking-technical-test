@@ -1,4 +1,5 @@
+import '../styles/layout/footer.scss';
 const Footer = () => {
-  return <>Maitane Abad Conde</>;
+  return <footer className='footer'>Maitane Abad Conde</footer>;
 };
 export default Footer;

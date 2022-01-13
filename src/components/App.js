@@ -12,8 +12,6 @@ const App = () => {
   const [optionAnswerTotal, setOptionAnswerTotal] = useState([]);
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
-  const [hiddenStart, setHiddenStart] = useState('');
-  const [hiddenGame, setHiddenGame] = useState('hidden');
   // const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
 
   // ls.set('localStorage', localStorage);
@@ -45,9 +43,6 @@ const App = () => {
               optionAnswerTotal={optionAnswerTotal}
               setOptionAnswerTotal={setOptionAnswerTotal}
               loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
-              setHiddenStart={setHiddenStart}
-              hiddenStart={hiddenStart}
-              setHiddenGame={setHiddenGame}
             />
           }
         />
@@ -55,8 +50,6 @@ const App = () => {
           path='/game'
           element={
             <Game
-              setHiddenStart={setHiddenStart}
-              hiddenStart={hiddenStart}
               data={data}
               optionAnswerTotal={optionAnswerTotal}
               loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
@@ -65,7 +58,6 @@ const App = () => {
               answer={answer}
               setAnswer={setAnswer}
               counter={counter}
-              hiddenGame={hiddenGame}
             />
           }
         />

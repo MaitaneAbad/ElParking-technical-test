@@ -2,7 +2,6 @@ import '../styles/layout/start.scss';
 import { NavLink } from 'react-router-dom';
 
 const Start = (props) => {
-  console.log(props);
   const createAnswers = () => {
     for (let i = 0; i < props.data.length; i++) {
       const subArrayAux = [];
@@ -16,8 +15,6 @@ const Start = (props) => {
       props.optionAnswerTotal.push(subArrayAux);
     }
     props.loadNextQuestionAndAnswers();
-    props.setHiddenStart('hidden');
-    props.setHiddenGame('');
   };
 
   return (

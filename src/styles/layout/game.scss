@@ -105,6 +105,19 @@
           padding: 3px;
           border-radius: 5px;
           color: black;
+
+          &:hover {
+            box-shadow: 0px 0px 15px 10px #bb13fe7a;
+            width: 80px;
+          }
+          @media (min-width: 768px) {
+            padding: 6px;
+            font-size: 20px;
+            &:hover {
+              box-shadow: 0px 0px 15px 10px #bb13fe7a;
+              width: 105px;
+            }
+          }
         }
       }
     }
@@ -140,8 +153,9 @@
               }
             }
             &--correctAnswer {
+              text-transform: uppercase;
               text-decoration: none;
-              margin: 5px;
+              margin: 15px 5px 5px;
               &__span {
                 text-decoration: line-through;
                 color: rgba(175, 173, 173, 0.918);
@@ -160,6 +174,44 @@
     &--title {
       text-decoration: underline;
       text-transform: uppercase;
+    }
+  }
+  &__sectionAnswers {
+    text-align: center;
+    &--resumen {
+      &__title {
+        margin: 50px auto;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        font-size: 20px;
+        text-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+          0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, 0 0 1.3rem #bc13fe;
+        @media (min-width: 768px) {
+          font-size: 25px;
+        }
+      }
+      &__list {
+      }
+      &__buttonReset {
+        margin: 30px auto;
+        padding: 3px;
+        border-radius: 5px;
+        color: black;
+
+        &:hover {
+          box-shadow: 0px 0px 15px 10px #bb13fe7a;
+          width: 80px;
+        }
+        @media (min-width: 768px) {
+          padding: 6px;
+          font-size: 20px;
+          &:hover {
+            box-shadow: 0px 0px 15px 10px #bb13fe7a;
+            width: 105px;
+          }
+        }
+      }
     }
   }
 }

@@ -2,6 +2,7 @@
 import '../styles/layout/game.scss';
 import React, { useState } from 'react';
 import Header from './Header';
+import Footer from './Footer';
 import { NavLink } from 'react-router-dom';
 
 const Game = (props) => {
@@ -230,14 +231,24 @@ const Game = (props) => {
         </article>
       </section>
       <section className='main__sectionAnswers'>
-        <div className={resumen}>
-          <h2>Resumen del Tri-vi-al</h2>
-          <ul>{resumenQuestion}</ul>
+        <div className={`main__sectionAnswers--resumen ${resumen}`}>
+          <h2 className='main__sectionAnswers--resumen__title'>
+            Resumen del juego
+          </h2>
+          <ul className='main__sectionAnswers--resumen__list'>
+            {resumenQuestion}
+          </ul>
           <NavLink to='/'>
-            <button onClick={handleReset}>Reset</button>
+            <button
+              className='main__sectionAnswers--resumen__buttonReset'
+              onClick={handleReset}
+            >
+              Reset
+            </button>
           </NavLink>
         </div>
       </section>
+      <Footer />
     </main>
   );
 };

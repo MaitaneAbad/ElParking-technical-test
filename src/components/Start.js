@@ -22,14 +22,23 @@ const Start = (props) => {
     <section className='landing'>
       <h1 className='landing--title'>Tri-vi-al</h1>
       <form className='landing--form'>
-        <NavLink to='game'>
-          <input
-            className='landing--form__button'
-            type='button'
-            value='Comenzar juego'
-            onClick={createAnswers}
-          />
-        </NavLink>
+        <div className='landing--form__containerButtons'>
+          <NavLink to='game'>
+            <input
+              className='landing--form__containerButtons--button'
+              type='button'
+              value='Comenzar juego'
+              onClick={createAnswers}
+            />
+          </NavLink>
+          <NavLink to='instructions'>
+            <input
+              className='landing--form__containerButtons--button'
+              type='button'
+              value='¿Cómo se juega?'
+            />
+          </NavLink>
+        </div>
       </form>
     </section>
   );

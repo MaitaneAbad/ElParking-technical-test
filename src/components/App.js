@@ -2,6 +2,7 @@ import '../styles/App.scss';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import callToApi from './services/callToApi';
+import Instructions from './Instructions';
 //import ls from './services/localStorage';
 import Start from './Start';
 import Game from './Game';
@@ -61,6 +62,7 @@ const App = () => {
             />
           }
         />
+        <Route path='instructions' element={<Instructions />} />
         <Route path='*' element={<>Página no encontrada</>} />
       </Routes>
     </div>

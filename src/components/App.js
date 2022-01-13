@@ -1,5 +1,5 @@
 import '../styles/App.scss';
-//import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import callToApi from './services/callToApi';
 //import ls from './services/localStorage';
@@ -36,29 +36,41 @@ const App = () => {
 
   return (
     <div className='body'>
-      <Start
-        data={data}
-        optionAnswerTotal={optionAnswerTotal}
-        setOptionAnswerTotal={setOptionAnswerTotal}
-        loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
-        setHiddenStart={setHiddenStart}
-        hiddenStart={hiddenStart}
-        setHiddenGame={setHiddenGame}
-      />
-
-      <Game
-        setHiddenStart={setHiddenStart}
-        hiddenStart={hiddenStart}
-        data={data}
-        optionAnswerTotal={optionAnswerTotal}
-        loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
-        question={question}
-        setQuestion={setQuestion}
-        answer={answer}
-        setAnswer={setAnswer}
-        counter={counter}
-        hiddenGame={hiddenGame}
-      />
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <Start
+              data={data}
+              optionAnswerTotal={optionAnswerTotal}
+              setOptionAnswerTotal={setOptionAnswerTotal}
+              loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
+              setHiddenStart={setHiddenStart}
+              hiddenStart={hiddenStart}
+              setHiddenGame={setHiddenGame}
+            />
+          }
+        />
+        <Route
+          path='/game'
+          element={
+            <Game
+              setHiddenStart={setHiddenStart}
+              hiddenStart={hiddenStart}
+              data={data}
+              optionAnswerTotal={optionAnswerTotal}
+              loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}
+              question={question}
+              setQuestion={setQuestion}
+              answer={answer}
+              setAnswer={setAnswer}
+              counter={counter}
+              hiddenGame={hiddenGame}
+            />
+          }
+        />
+        <Route path='*' element={<>Página no encontrada</>} />
+      </Routes>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import '../styles/layout/start.scss';
+import { NavLink } from 'react-router-dom';
 
 const Start = (props) => {
   console.log(props);
@@ -23,12 +24,14 @@ const Start = (props) => {
     <section className={`landing ${props.hiddenStart}`}>
       <h1 className='landing--title'>Tri-vi-al</h1>
       <form className='landing--form'>
-        <input
-          className='landing--form__button'
-          type='button'
-          value='Comenzar juego'
-          onClick={createAnswers}
-        />
+        <NavLink to='game'>
+          <input
+            className='landing--form__button'
+            type='button'
+            value='Comenzar juego'
+            onClick={createAnswers}
+          />
+        </NavLink>
       </form>
     </section>
   );

@@ -143,6 +143,9 @@ const Game = (props) => {
             id={props.counter}
           >
             <p className='main__sectionQuestions--list__question'>
+              <span className='main__sectionQuestions--list__question--number'>
+                {props.counter + ' '}
+              </span>
               {props.question}
             </p>
             <form className='main__sectionQuestions--list__form'>

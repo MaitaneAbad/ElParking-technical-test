@@ -70,6 +70,21 @@
       &__question {
         text-align: center;
         margin: 20px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &--number {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 16px;
+          min-height: 16px;
+          padding: 0 2px 2px;
+          font-size: 18px;
+          margin-right: 5px;
+          border: 1px solid #bc13fe;
+          border-radius: 25%;
+        }
       }
       &__form {
         display: flex;

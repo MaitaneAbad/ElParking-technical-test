@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import ResumenQuestion from './ResumenQuestion';
 const ResumenGame = (props) => {
-  console.log(props);
   const handleReset = () => {
     props.setCounter(0);
   };
@@ -19,7 +18,9 @@ const ResumenGame = (props) => {
               data={props.data}
             />
           </ul>
-          <p>Número de respuestas correctas:{' ' + props.score}</p>
+          <p className='main__sectionAnswers--resumen__score'>
+            Número de respuestas correctas:{' ' + props.score}
+          </p>
           <NavLink to='/'>
             <button
               className='main__sectionAnswers--resumen__buttonReset'

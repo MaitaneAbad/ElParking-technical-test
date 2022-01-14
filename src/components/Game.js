@@ -223,16 +223,8 @@ const Game = (props) => {
       <ResumenGame
         resumen={resumen}
         questionAnswerPack={questionAnswerPack}
-        setQuestionAnswerPack={setQuestionAnswerPack}
         data={props.data}
-        optionAnswerTotal={props.optionAnswerTotal}
-        loadNextQuestionAndAnswers={props.loadNextQuestionAndAnswers}
-        question={props.question}
-        setQuestion={props.setQuestion}
-        answer={props.answer}
-        setAnswer={props.setAnswer}
         counter={props.counter}
-        setCounter={props.setCounter}
         score={score}
       />
     </main>

@@ -208,14 +208,6 @@ const Game = (props) => {
               questionAnswerPack={questionAnswerPack}
               setQuestionAnswerPack={setQuestionAnswerPack}
               data={props.data}
-              optionAnswerTotal={props.optionAnswerTotal}
-              loadNextQuestionAndAnswers={props.loadNextQuestionAndAnswers}
-              question={props.question}
-              setQuestion={props.setQuestion}
-              answer={props.answer}
-              setAnswer={props.setAnswer}
-              counter={props.counter}
-              setCounter={props.setCounter}
             />
           </ul>
         </article>
@@ -225,6 +217,7 @@ const Game = (props) => {
         questionAnswerPack={questionAnswerPack}
         data={props.data}
         counter={props.counter}
+        setCounter={props.setCounter}
         score={score}
       />
     </main>

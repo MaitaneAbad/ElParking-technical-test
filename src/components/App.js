@@ -15,7 +15,7 @@ const App = () => {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   //const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
-  console.log(localStorage);
+  //console.log(localStorage);
   //ls.set('localStorage', localStorage);
   const loadNextQuestionAndAnswers = () => {
     if (counter < data.length) {
@@ -32,7 +32,6 @@ const App = () => {
     });
   }, []);
 
-  console.log(data);
   const createAnswers = () => {
     for (let i = 0; i < data.length; i++) {
       const subArrayAux = [];

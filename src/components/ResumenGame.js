@@ -16,16 +16,7 @@ const ResumenGame = (props) => {
           <ul className='main__sectionAnswers--resumen__list'>
             <ResumenQuestion
               questionAnswerPack={props.questionAnswerPack}
-              setQuestionAnswerPack={props.setQuestionAnswerPack}
               data={props.data}
-              optionAnswerTotal={props.optionAnswerTotal}
-              loadNextQuestionAndAnswers={props.loadNextQuestionAndAnswers}
-              question={props.question}
-              setQuestion={props.setQuestion}
-              answer={props.answer}
-              setAnswer={props.setAnswer}
-              counter={props.counter}
-              setCounter={props.setCounter}
             />
           </ul>
           <p>Número de respuestas correctas:{' ' + props.score}</p>

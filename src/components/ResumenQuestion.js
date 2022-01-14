@@ -1,8 +1,5 @@
 const ResumenQuestion = (props) => {
-  console.log(props);
   const resumenQuestion = props.questionAnswerPack.map((item, i) => {
-    console.log(props);
-
     return (
       <li className='main__sectionQuestions--viewQuestion__list--item' key={i}>
         <p className='main__sectionQuestions--viewQuestion__list--item__question'>

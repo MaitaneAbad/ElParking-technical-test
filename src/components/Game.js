@@ -94,7 +94,7 @@ const Game = (props) => {
 
   return (
     <main className='main'>
-      <Header />
+      <Header setCounter={props.setCounter} />
       <section className='main__sectionQuestions'>
         <ul className={quiz}>
           <li

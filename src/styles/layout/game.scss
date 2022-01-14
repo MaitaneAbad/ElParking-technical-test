@@ -172,7 +172,18 @@
           font-size: 25px;
         }
       }
-      &__list {
+      &__score {
+        margin: 30px auto 15px;
+        border: #be2af8e1 1px dotted;
+        padding: 5px;
+        width: 80%;
+        @media (min-width: 560px) {
+          width: 50%;
+        }
+        &--span {
+          margin-left: 10px;
+          font-size: 20px;
+        }
       }
       &__buttonReset {
         border: 0.1rem solid #fff;

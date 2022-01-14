@@ -19,7 +19,10 @@ const ResumenGame = (props) => {
             />
           </ul>
           <p className='main__sectionAnswers--resumen__score'>
-            Número de respuestas correctas:{' ' + props.score}
+            Número de respuestas correctas:
+            <span className='main__sectionAnswers--resumen__score--span'>
+              {' ' + props.score}
+            </span>
           </p>
           <NavLink to='/'>
             <button

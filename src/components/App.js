@@ -31,6 +31,7 @@ const App = () => {
       setData(response);
     });
   }, []);
+
   console.log(data);
   const createAnswers = () => {
     for (let i = 0; i < data.length; i++) {

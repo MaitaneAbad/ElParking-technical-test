@@ -2,8 +2,6 @@ import '../styles/layout/start.scss';
 import { NavLink } from 'react-router-dom';
 
 const Start = (props) => {
-  console.log(props);
-
   return (
     <section className='landing'>
       <h1 className='landing--title'>Tri-vi-al</h1>

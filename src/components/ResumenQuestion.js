@@ -33,7 +33,6 @@ const ResumenQuestion = (props) => {
       </li>
     );
   });
-  console.log(props);
   return <>{resumenQuestion}</>;
 };
 export default ResumenQuestion;

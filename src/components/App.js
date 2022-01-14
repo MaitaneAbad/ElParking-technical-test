@@ -14,15 +14,13 @@ const App = () => {
   const [optionAnswerTotal, setOptionAnswerTotal] = useState([]);
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
-  // const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
-
-  // ls.set('localStorage', localStorage);
+  //const [localStorage, setLocalStorage] = useState(ls.get('localStorage'));
+  console.log(localStorage);
+  //ls.set('localStorage', localStorage);
   const loadNextQuestionAndAnswers = () => {
-    console.log(setTimeout);
     if (counter < data.length) {
       const titleQuestion = data[counter].questions;
       const answersOption = optionAnswerTotal[counter];
-      for (let i = 0; i < answersOption.length; i++) {}
       setQuestion(titleQuestion);
       setAnswer(answersOption);
       setCounter(counter + 1);
@@ -33,7 +31,22 @@ const App = () => {
       setData(response);
     });
   }, []);
+  console.log(data);
+  const createAnswers = () => {
+    for (let i = 0; i < data.length; i++) {
+      const subArrayAux = [];
+      for (let j = 0; j < data[i].incorrectAnswers.length; j++) {
+        subArrayAux.push(data[i].incorrectAnswers[j]);
+      }
+      subArrayAux.push(data[i].correctAnswer);
+      subArrayAux.sort(function () {
+        return Math.random() - 0.5;
+      });
+      optionAnswerTotal.push(subArrayAux);
+    }
 
+    loadNextQuestionAndAnswers();
+  };
   return (
     <div className='body'>
       <Routes>
@@ -41,6 +54,7 @@ const App = () => {
           path='/'
           element={
             <Start
+              createAnswers={createAnswers}
               data={data}
               optionAnswerTotal={optionAnswerTotal}
               setOptionAnswerTotal={setOptionAnswerTotal}
@@ -52,6 +66,7 @@ const App = () => {
           path='/game'
           element={
             <Game
+              createAnswers={createAnswers}
               data={data}
               optionAnswerTotal={optionAnswerTotal}
               loadNextQuestionAndAnswers={loadNextQuestionAndAnswers}

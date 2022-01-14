@@ -28,6 +28,7 @@ const ResumenGame = (props) => {
               setCounter={props.setCounter}
             />
           </ul>
+          <p>Número de respuestas correctas:{' ' + props.score}</p>
           <NavLink to='/'>
             <button
               className='main__sectionAnswers--resumen__buttonReset'

@@ -14,6 +14,7 @@ const Game = (props) => {
   const [checkedValid, setCheckedValid] = useState(false);
   const [questionAnswerPack, setQuestionAnswerPack] = useState([]);
   const [error, setError] = useState('');
+  const [score, setScore] = useState(0);
 
   const handleOptionInputs = (ev) => {
     setError('');
@@ -22,6 +23,7 @@ const Game = (props) => {
     validAswers(ev.target.value);
   };
   const validAswers = () => {
+    console.log(props.data);
     if (answers === props.data[props.counter - 1].correctAnswer) {
       return true;
     } else {
@@ -60,6 +62,17 @@ const Game = (props) => {
         setResumen('');
         setViewQuestions('hidden');
         setQuiz('hidden');
+        let correctAnswerQuantity = 0;
+        for (let i = 0; i < questionAnswerPack.length; i++) {
+          if (questionAnswerPack[i][2] === true) {
+            correctAnswerQuantity++;
+            setScore(correctAnswerQuantity);
+            console.log(correctAnswerQuantity);
+          }
+          setScore(correctAnswerQuantity);
+          console.log(setScore);
+          console.log(correctAnswerQuantity);
+        }
       }
     }
   };
@@ -92,6 +105,7 @@ const Game = (props) => {
     }
   }
 
+  console.log(props);
   return (
     <main className='main'>
       <Header setCounter={props.setCounter} />
@@ -219,6 +233,7 @@ const Game = (props) => {
         setAnswer={props.setAnswer}
         counter={props.counter}
         setCounter={props.setCounter}
+        score={score}
       />
     </main>
   );

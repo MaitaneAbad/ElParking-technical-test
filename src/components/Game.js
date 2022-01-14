@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import Header from './Header';
 import ResumenQuestion from './ResumenQuestion';
 import ResumenGame from './ResumenGame';
-
+//import ls from './services/localStorage';
 const Game = (props) => {
+  //const localStorageAnswers = ls.get('answers', '');
   const [answers, setAnswers] = useState('');
   const [resumen, setResumen] = useState('hidden');
   const [sectionHidden, setSectionHidden] = useState('hidden');
@@ -15,7 +16,14 @@ const Game = (props) => {
   const [questionAnswerPack, setQuestionAnswerPack] = useState([]);
   const [error, setError] = useState('');
   const [score, setScore] = useState(0);
-
+  // useEffect(() => {
+  //   console.log(props.data);
+  //   ls.set('data', props.data);
+  //   ls.set('question', props.question);
+  //   ls.set('answer', props.answer);
+  //   ls.set('counter', props.counter);
+  //   console.log('cambió la pregunta');
+  // });
   const handleOptionInputs = (ev) => {
     setError('');
     setAnswers(ev.target.value);
@@ -24,12 +32,14 @@ const Game = (props) => {
   };
   const validAswers = () => {
     console.log(props.data);
+
     if (answers === props.data[props.counter - 1].correctAnswer) {
       return true;
     } else {
       return false;
     }
   };
+  // Intento de realizar un temporizador
   // let a = window.setInterval(() => {
   //   console.log('temporizador de 30"');
   // }, 5000);

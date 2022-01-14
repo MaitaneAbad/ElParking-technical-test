@@ -6,8 +6,6 @@ import ResumenQuestion from './ResumenQuestion';
 import ResumenGame from './ResumenGame';
 
 const Game = (props) => {
-  console.log(props);
-
   const [answers, setAnswers] = useState('');
   const [resumen, setResumen] = useState('hidden');
   const [sectionHidden, setSectionHidden] = useState('hidden');
@@ -16,6 +14,7 @@ const Game = (props) => {
   const [checkedValid, setCheckedValid] = useState(false);
   const [questionAnswerPack, setQuestionAnswerPack] = useState([]);
   const [error, setError] = useState('');
+
   const handleOptionInputs = (ev) => {
     setError('');
     setAnswers(ev.target.value);
@@ -29,9 +28,16 @@ const Game = (props) => {
       return false;
     }
   };
-
+  // let a = window.setInterval(() => {
+  //   console.log('temporizador de 30"');
+  // }, 5000);
+  // setTimeout(() => {
+  //   clearInterval(a);
+  //   alert('stop');
+  // }, 10000);
   const handleNextQuestion = (ev) => {
     const arrayAux = [];
+
     if (checkedValid !== true) {
       setSectionHidden('');
       setError('Tienes que seleccionar alguna respuesta');

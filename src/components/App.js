@@ -18,12 +18,13 @@ const App = () => {
 
   // ls.set('localStorage', localStorage);
   const loadNextQuestionAndAnswers = () => {
+    console.log(setTimeout);
     if (counter < data.length) {
       const titleQuestion = data[counter].questions;
-      const firstAnswers = optionAnswerTotal[counter];
-      for (let i = 0; i < firstAnswers.length; i++) {}
+      const answersOption = optionAnswerTotal[counter];
+      for (let i = 0; i < answersOption.length; i++) {}
       setQuestion(titleQuestion);
-      setAnswer(firstAnswers);
+      setAnswer(answersOption);
       setCounter(counter + 1);
     }
   };
@@ -65,8 +66,8 @@ const App = () => {
         />
         <Route path='instructions' element={<Instructions />} />
         <Route path='*' element={<>Página no encontrada</>} />
-      </Routes>
-      <Footer />
+      </Routes>{' '}
+      <Footer />{' '}
     </div>
   );
 };

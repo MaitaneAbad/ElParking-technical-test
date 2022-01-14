@@ -1,0 +1,11 @@
+.notFound {
+  text-align: center;
+
+  &__title {
+    padding: 20px;
+  }
+  &__link {
+    text-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+      0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, 0 0 1.3rem #bc13fe;
+  }
+}

@@ -65,3 +65,5 @@ Y a continuación:
 ## Licencia 📄
 
 Este proyecto está bajo la Licencia MIT License mira el archivo LICENSE para más detalles.
+
+[![CodeFactor](https://www.codefactor.io/repository/github/maitaneabad/elparking-technical-test/badge)](https://www.codefactor.io/repository/github/maitaneabad/elparking-technical-test)

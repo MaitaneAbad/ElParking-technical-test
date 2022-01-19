@@ -2,7 +2,6 @@
 
 # Tri-vi-al
 
-## Prueba técnica de ElParking
 
 Este proyecto consiste en la implementación de API para jugar al Tri-vi-al
 
